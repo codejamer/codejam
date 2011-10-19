@@ -1,17 +1,14 @@
-class Checkout
-  PRICING_RULES = [
-    {"goods" => "BBB", "price" => 60},
-    {"goods" => "BB", "price" => 45},
-    {"goods" => "B", "price" => 30},
-  ]
+require 'lib/checkout'
 
-  def initialize
+class Checkout
+  def initialize(pricing_rules)
+    @pricing_rules = pricing_rules
     @goods = []
     @list = ""
   end
 
   def total_price
-    PRICING_RULES.inject(0) do |total, rule|
+    @pricing_rules.inject(0) do |total, rule|
       total += calculate_price_match rule
     end
   end

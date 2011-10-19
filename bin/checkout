@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'lib/checkout'
+
+co = Checkout.new(PRICING_RULES)
+
+ARGV.each do |goods|
+  goods.split(//).each { |item| co.scan(item) }
+  puts co.total_price
+end
+

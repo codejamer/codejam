@@ -1,8 +1,8 @@
-require 'checkout'
+require 'lib/checkout'
 
 describe "Chechout" do
   
-  let(:co){Checkout.new}
+  let(:co){Checkout.new(PRICING_RULES)}
   
   it "should be 0 if empty" do
     co.total_price.should == 0
