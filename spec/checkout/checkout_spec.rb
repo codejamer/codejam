@@ -4,27 +4,30 @@ describe Checkout do
   let(:co) { Checkout.new }
 
   describe "#total_price" do
+    subject { co.total_price }
 
-    it "should return 0 when no goods" do
-      co.total_price.should eql(0)
+    before(:each) do
+      goods.split(//).each { |item| co.scan(item) }
     end
 
-    it "should return 50 given a single goods" do
-      co.scan("A")
-      co.total_price.should eql(50)
+    context "given without any goods" do
+      let(:goods) { "" }
+      it { should eql(0) }
     end
 
-    it "should return 80 given two single goods" do
-      co.scan("A")
-      co.scan("B")
-      co.total_price.should eql(80)
+    context "given a single goods" do
+      let(:goods) { "A" }
+      it { should eql(50) }
     end
 
-    it "should return 130 given a combination" do
-      co.scan("A")
-      co.scan("A")
-      co.scan("A")
-      co.total_price.should eql(130)
+    context "given two single goods" do
+      let(:goods) { "AB" }
+      it { should eql(80) }
+    end
+
+    context "given a combination" do
+      let(:goods) { "AAA" }
+      it { should eql(130) }
     end
   end
 end
