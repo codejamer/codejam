@@ -19,6 +19,13 @@ describe Checkout do
       co.scan("B")
       co.total_price.should eql(80)
     end
+
+    it "should return 130 given a combination" do
+      co.scan("A")
+      co.scan("A")
+      co.scan("A")
+      co.total_price.should eql(130)
+    end
   end
 end
 

@@ -1,7 +1,8 @@
 class Checkout
   PRICING_RULES = {
     "A" => 50,
-    "AB" => 80
+    "AB" => 80,
+    "AAA" => 130
   }
   
   def initialize
